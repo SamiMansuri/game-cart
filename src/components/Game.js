@@ -1,19 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { loadDetail } from "../redux/actions/detailsAction";
 
-const Game = ({ name, img, platforms, id, pathIdURL }) => {
+const Game = ({ name, released, img, id }) => {
   const dispatch = useDispatch();
 
-  // const loadDetailHandler = () => {
-  //   document.body.style.overflow = "hidden";
-  //   dispatch(loadDetail(id));
-  // };
-
+  const loadDetailHandler = () => {
+    document.body.style.overflow = "hidden";
+    dispatch(loadDetail(id));
+  };
   const stringPathId = id.toString();
+  // console.log(id);
   return (
-    <div className="relative max-w-700px overflow-hidden bg-[rgb(32, 32, 32)] bg-[#000000] rounded-xl transition duration-300 ease-0s ">
-      <Link onClick="" className="bg-transparent" to="">
+    <div
+      onClick={loadDetailHandler}
+      className="relative max-w-700px overflow-hidden bg-[rgb(32, 32, 32)] bg-[#000000] rounded-xl transition duration-300 ease-0s "
+    >
+      <Link
+        className="bg-transparent"
+        // onclick={console.log("hello")}
+        to={`/game/${id}`}
+      >
         <img
           alt={name}
           id={stringPathId}
